@@ -1,0 +1,51 @@
+.sidenav {
+  width: 250px;
+}
+
+.toggle {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+  margin: 10px 0;
+  &:hover {
+    cursor: pointer;
+    background-color: #fafafa;
+  }
+}
+.logo {
+  width: 40px;
+  margin: 10px auto;
+}
+
+.sidenav-section:not(.sidenav) {
+  width: 60px;
+}
+
+.nav {
+  .active-link {
+    background-color: #fafafa;
+    border-left: solid 3px #ee9d3b;
+  }
+
+  .hover {
+    transition-duration: 400ms;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-property: transform, border, background-color;
+  }
+
+  mat-list-item,
+  a {
+    border: none;
+    box-sizing: border-box;
+    text-decoration: none;
+    &:hover {
+      cursor: pointer;
+      background-color: #fafafa;
+      border-left: solid 3px #ee9d3b;
+    }
+  }
+  mat-icon {
+    color: #ee9d3b;
+  }
+}

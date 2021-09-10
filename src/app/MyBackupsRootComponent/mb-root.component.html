@@ -1,0 +1,12 @@
+<mat-sidenav-container autosize>
+    <mat-sidenav #sidenav fixedInViewport="true" mode="side" opened="{{ isExpanded }}">
+        <mb-sidebar (toggleMenu)="toggleMenu()" [isExpanded]="isExpanded"></mb-sidebar>
+    </mat-sidenav>
+    <mat-sidenav-content [style.margin-left.px]="!isExpanded ? 60 : 250">
+        <div class="content-container">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>
+
+<mb-footer></mb-footer>
