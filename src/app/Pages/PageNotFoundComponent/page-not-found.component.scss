@@ -1,0 +1,14 @@
+#not-found{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    font-size: 30px;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+}
+#not-found img{
+    max-width: 50vw;
+}
