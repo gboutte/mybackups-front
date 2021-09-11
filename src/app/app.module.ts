@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { FooterComponent } from './Components/FooterComponent/footer.component';
@@ -22,7 +22,9 @@ import { ConfigurationModule } from './Modules/configuration.module';
     MaterialModule,
     ConfigurationModule,
   ],
-  providers: [],
+  providers: [
+    Title,
+  ],
   bootstrap: [MBRootComponent]
 })
 export class AppModule { }
