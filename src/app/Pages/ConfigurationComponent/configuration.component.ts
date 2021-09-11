@@ -1,5 +1,5 @@
-import { Component } from "@angular/core";
-import { Title } from "@angular/platform-browser";
+import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'mb-configuration-page',
@@ -8,6 +8,6 @@ import { Title } from "@angular/platform-browser";
 })
 export class ConfigurationComponent {
   public constructor(private titleService: Title) {
-    this.titleService.setTitle("Configuration")
+    titleService.setTitle('Configuration');
   }
 }

@@ -1,5 +1,5 @@
-import { Component } from "@angular/core";
-import { Title } from "@angular/platform-browser";
+import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'mb-dashboard-page',
@@ -8,6 +8,6 @@ import { Title } from "@angular/platform-browser";
 })
 export class DashboardComponent {
   public constructor(private titleService: Title) {
-    this.titleService.setTitle("Dashboard")
+    titleService.setTitle('Dashboard');
   }
 }

@@ -1,8 +1,8 @@
-import { NgModule } from "@angular/core";
-import { BackupsConfigsTableComponent } from "../Pages/ConfigurationComponent/BackupsConfigsTableComponent/backups-configs-table.component";
-import { MaterialModule } from "./material.module";
+import { NgModule } from '@angular/core';
+import { BackupsConfigsTableComponent } from '../Pages/ConfigurationComponent/BackupsConfigsTableComponent/backups-configs-table.component';
+import { MaterialModule } from './material.module';
 import { CommonModule } from '@angular/common';
-import { ConfigurationComponent } from "../Pages/ConfigurationComponent/configuration.component";
+import { ConfigurationComponent } from '../Pages/ConfigurationComponent/configuration.component';
 
 @NgModule({
   imports: [
@@ -13,12 +13,8 @@ import { ConfigurationComponent } from "../Pages/ConfigurationComponent/configur
     ConfigurationComponent,
     BackupsConfigsTableComponent,
   ],
-  exports: [
-    
-  ],
-  providers: [
-    
-  ],
+  exports: [],
+  providers: [],
   entryComponents: []
 })
 export class ConfigurationModule {

@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from "@angular/core";
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'mb-sidebar',
@@ -10,7 +10,7 @@ export class SidebarComponent {
   @Output() toggleMenu = new EventEmitter();
 
   public routeLinks = [
-    { link: "dashboard", name: "Dashboard", icon: "dashboard" },
-    { link: "configuration", name: "Configuration", icon: "settings" },
+    { link: 'dashboard', name: 'Dashboard', icon: 'dashboard' },
+    { link: 'configuration', name: 'Configuration', icon: 'settings' },
   ];
 }
