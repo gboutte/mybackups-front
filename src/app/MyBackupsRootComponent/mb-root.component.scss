@@ -1,4 +1,16 @@
-.content-container{
+.content-container {
     padding: 10px;
     height: calc(100vh - 40px);
+}
+
+.sidenav-content {
+    margin-left: 60px !important;
+}
+.sidenav-content.expanded {
+    margin-left: 250px !important;
+}
+@media screen and (max-width: 700px) {
+    .sidenav-content.expanded {
+        margin-left: 60px !important;
+    }
 }

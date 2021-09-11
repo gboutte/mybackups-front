@@ -2,7 +2,7 @@
     <mat-sidenav #sidenav fixedInViewport="true" mode="side" opened="{{ isExpanded }}">
         <mb-sidebar (toggleMenu)="toggleMenu()" [isExpanded]="isExpanded"></mb-sidebar>
     </mat-sidenav>
-    <mat-sidenav-content [style.margin-left.px]="marginLeft">
+    <mat-sidenav-content class="sidenav-content" [class.expanded]="isExpanded" >
         <div class="content-container">
             <router-outlet></router-outlet>
         </div>

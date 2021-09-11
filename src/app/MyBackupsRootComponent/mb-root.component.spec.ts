@@ -20,11 +20,6 @@ describe('MBRootComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'mybackups-front'`, () => {
-    const fixture = TestBed.createComponent(MBRootComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('mybackups-front');
-  });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(MBRootComponent);
