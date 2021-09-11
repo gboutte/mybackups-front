@@ -6,10 +6,24 @@ import { Component } from '@angular/core';
   styleUrls: ['./mb-root.component.scss']
 })
 export class MBRootComponent {
-  title = 'mybackups-front';
   public isExpanded = false;
+  public marginLeft = 60;
+  private isMobile = false;
+
+  public constructor() {
+    var matchMedia = window.matchMedia("(max-width: 700px)")
+    this.isMobile = matchMedia['matches'];
+  }
 
   public toggleMenu() {
     this.isExpanded = !this.isExpanded;
+    this.calcMargin();
+  }
+  private calcMargin() {
+    if (this.isMobile) {
+      this.marginLeft = 60;
+    } else {
+      this.marginLeft = !this.isExpanded ? 60 : 250;
+    }
   }
 }

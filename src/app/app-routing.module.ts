@@ -7,7 +7,7 @@ import { PageNotFoundComponent } from './Pages/PageNotFoundComponent/page-not-fo
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'configuration', component: ConfigurationComponent },
-  { path: '',   redirectTo: '/dashboard', pathMatch: 'full' }, // redirect to `first-component`
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' }, // redirect to `first-component`
   { path: '**', component: PageNotFoundComponent },  // Wildcard route for a 404 page
 ];
 
