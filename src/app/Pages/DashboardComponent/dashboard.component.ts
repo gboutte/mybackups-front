@@ -7,7 +7,9 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
+
   public constructor(private titleService: Title) {
     titleService.setTitle('Dashboard');
   }
+
 }

@@ -3,6 +3,7 @@ import { BackupsConfigsTableComponent } from '../Pages/ConfigurationComponent/Ba
 import { MaterialModule } from './material.module';
 import { CommonModule } from '@angular/common';
 import { ConfigurationComponent } from '../Pages/ConfigurationComponent/configuration.component';
+import { BackupTypeService } from '../Services/backup-type.service';
 
 @NgModule({
   imports: [
@@ -14,7 +15,9 @@ import { ConfigurationComponent } from '../Pages/ConfigurationComponent/configur
     BackupsConfigsTableComponent,
   ],
   exports: [],
-  providers: [],
+  providers: [
+    BackupTypeService
+  ],
   entryComponents: []
 })
 export class ConfigurationModule {

@@ -49,7 +49,6 @@ export class BackupsConfigsTableComponent implements AfterViewInit, OnInit {
     } else {
       this.nbColumnsHide = 0;
     }
-    console.log(this.nbColumnsHide);
   }
 }
 
