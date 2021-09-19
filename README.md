@@ -1,5 +1,6 @@
-# MybackupsFront
+# Mybackups - Front
 
+![Lint ci](https://github.com/gboutte/mybackups-front/actions/workflows/build.yml/badge.svg)  ![Lint ci](https://github.com/gboutte/mybackups-front/actions/workflows/lint.yml/badge.svg)
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.5.
 
 ## Development server
