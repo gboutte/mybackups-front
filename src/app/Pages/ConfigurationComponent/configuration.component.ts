@@ -8,6 +8,13 @@ import { Title } from '@angular/platform-browser';
 })
 export class ConfigurationComponent {
   public constructor(private titleService: Title) {
+  backupConfigs:BackupConfig[] =[];
+
+  public constructor(private titleService: Title, private backupConfigService: BackupConfigService) {
     titleService.setTitle('Configuration');
+    backupConfigService.getAll().subscribe((r) => {this.backupConfigs = r;});
+  }
+  refreshBackupConfigs(){
+    this.backupConfigService.getAll().subscribe((r) => {this.backupConfigs = r;});
   }
 }

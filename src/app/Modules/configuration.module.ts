@@ -4,6 +4,7 @@ import { MaterialModule } from './material.module';
 import { CommonModule } from '@angular/common';
 import { ConfigurationComponent } from '../Pages/ConfigurationComponent/configuration.component';
 import { BackupTypeService } from '../Services/backup-type.service';
+import { BackupConfigService } from '../Services/backup-config.service';
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { BackupTypeService } from '../Services/backup-type.service';
   ],
   exports: [],
   providers: [
-    BackupTypeService
+    BackupTypeService,
+    BackupConfigService,
   ],
   entryComponents: []
 })

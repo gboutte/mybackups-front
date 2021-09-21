@@ -1,44 +1,41 @@
-import { AfterViewInit, Component, HostListener, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, EventEmitter, HostListener, Input, OnChanges, OnInit, Output, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-
-export interface BackupsConfig {
-  name: string;
-  enabled: boolean;
-  to_keep: number;
-  frequency: string;
-  from_type: string;
-  to_type: string;
-}
-
-const BACKUPS_CONFIG_DATA: BackupsConfig[] = [
-  { name: 'Backup config 1', enabled: true, to_keep: 7, frequency: '* * * * *', from_type: 'local', to_type: 'local' },
-  { name: 'Backup config 2', enabled: true, to_keep: 5, frequency: '* * * * *', from_type: 'local', to_type: 'local' },
-  { name: 'Backup config 3', enabled: false, to_keep: 7, frequency: '* * * * *', from_type: 'local', to_type: 'local' },
-  { name: 'Backup config 4', enabled: true, to_keep: 1, frequency: '* * * * *', from_type: 'local', to_type: 'local' },
-  { name: 'Backup config 5', enabled: false, to_keep: 10, frequency: '* * * * *', from_type: 'local', to_type: 'local' },
-  { name: 'Backup config 5', enabled: false, to_keep: 10, frequency: '* * * * *', from_type: 'local', to_type: 'local' },
-  { name: 'Backup config 5', enabled: false, to_keep: 10, frequency: '* * * * *', from_type: 'local', to_type: 'local' },
-  { name: 'Backup config 5', enabled: false, to_keep: 10, frequency: '* * * * *', from_type: 'local', to_type: 'local' },
-  { name: 'Backup config 5', enabled: false, to_keep: 10, frequency: '* * * * *', from_type: 'local', to_type: 'local' },
-];
+import { BackupConfig } from 'src/app/Models/backup-config.model';
+import { BackupConfigService } from 'src/app/Services/backup-config.service';
 
 @Component({
   selector: 'mb-backups-configs-table',
   styleUrls: ['backups-configs-table.component.scss'],
   templateUrl: 'backups-configs-table.component.html',
 })
-export class BackupsConfigsTableComponent implements AfterViewInit, OnInit {
-  displayedColumns: string[] = ['name', 'enabled', 'to_keep', 'frequency', 'from_type', 'to_type'];
-  dataSource = new MatTableDataSource<BackupsConfig>(BACKUPS_CONFIG_DATA);
+export class BackupsConfigsTableComponent implements AfterViewInit, OnInit, OnChanges {
+  displayedColumns: string[] = ['name', 'enabled', 'to_keep', 'frequency', 'from_type', 'to_type', 'actions'];
   nbColumnsHide = 0;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  backupConfigService: BackupConfigService;
+  @Input() backupsConfigs: BackupConfig[] = [];
+  dataSource = new MatTableDataSource<BackupConfig>(this.backupsConfigs);
+  @Output() refreshList = new EventEmitter<boolean>();
 
   ngOnInit() {
     this.onResize();
   }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+  }
+  ngOnChanges() {
+    this.dataSource = new MatTableDataSource<BackupConfig>(this.backupsConfigs);
+  }
+
+  delete(backupConfig: BackupConfig) {
+    this.backupConfigService.delete(backupConfig).subscribe(() => {
+      this.refreshList.emit(true);
+    });
+  }
+
+  constructor(backupConfigService: BackupConfigService) {
+    this.backupConfigService = backupConfigService;
   }
   @HostListener('window:resize', ['$event'])
   private onResize() {

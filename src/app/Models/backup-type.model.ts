@@ -1,12 +1,23 @@
+import { autoserialize } from 'cerialize';
 
 export class BackupType {
-  code: string = '';
-  name: string = '';
-  isOrigin: boolean = false;
-  isDestination: boolean = false;
-  parameters: any = {};
+  @autoserialize code: string = '';
+  @autoserialize name: string = '';
+  @autoserialize isOrigin: boolean = false;
+  @autoserialize isDestination: boolean = false;
+  @autoserialize parameters: any = {};
 
-  public constructor(init?: Partial<BackupType>) {
-    Object.assign(this, init);
+  constructor(
+    code: string,
+    name: string,
+    isOrigin: boolean,
+    isDestination: boolean,
+    parameters: any
+  ) {
+    this.code = code;
+    this.name = name;
+    this.isOrigin = isOrigin;
+    this.isDestination = isDestination;
+    this.parameters = parameters;
   }
 }
