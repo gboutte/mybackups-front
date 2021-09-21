@@ -9,7 +9,6 @@ import { BackupConfigService } from 'src/app/Services/backup-config.service';
   styleUrls: ['./configuration.component.scss']
 })
 export class ConfigurationComponent {
-  public constructor(private titleService: Title) {
   backupConfigs:BackupConfig[] =[];
 
   public constructor(private titleService: Title, private backupConfigService: BackupConfigService) {
