@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { BackupConfig } from 'src/app/Models/backup-config.model';
+import { BackupConfigService } from 'src/app/Services/backup-config.service';
 
 @Component({
   selector: 'mb-configuration-page',
