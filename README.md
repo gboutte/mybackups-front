@@ -1,6 +1,9 @@
 # Mybackups - Front
 
-![Lint ci](https://github.com/gboutte/mybackups-front/actions/workflows/build.yml/badge.svg)  ![Lint ci](https://github.com/gboutte/mybackups-front/actions/workflows/lint.yml/badge.svg)
+![Lint ci](https://github.com/gboutte/mybackups-front/actions/workflows/build.yml/badge.svg)  
+![Lint ci](https://github.com/gboutte/mybackups-front/actions/workflows/lint.yml/badge.svg)
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/gboutte/mybackups-front.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/gboutte/mybackups-front/alerts/)
+[![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/gboutte/mybackups-front.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/gboutte/mybackups-front/context:javascript)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.5.
 
