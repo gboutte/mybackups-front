@@ -1,0 +1,18 @@
+<ng-container *ngIf="backupType !== null">
+
+  <ng-container *ngFor="let param of backupType.parameters">
+    <container-element [ngSwitch]="param.type">
+      <!-- Input string -->
+      <ng-container *ngSwitchCase="'string'">
+        <mat-form-field class="input-full-width" appearance="fill" autocomplete="disabled">
+          <mat-label>{{param.label}}</mat-label>
+          <input matInput>
+        </mat-form-field>
+      </ng-container>
+      <!-- Input unsupported -->
+      <ng-container *ngSwitchDefault>Unsupported parameter</ng-container>
+
+    </container-element>
+  </ng-container>
+
+</ng-container>

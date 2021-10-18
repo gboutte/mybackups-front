@@ -112,7 +112,7 @@ import { MatTreeModule } from '@angular/material/tree';
     MatCheckboxModule,
     MatButtonToggleModule,
     MatPaginatorModule,
-    MatIcon
+    MatIcon,
   ],
   providers: [
     {

@@ -1,11 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
-@import url("../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css");
 
-@import '~ngx-toastr/toastr';
 
+@import "~ngx-toastr/toastr";
 
 * {
     box-sizing: border-box;
+}
+.animation-smooth {
     transition-property: all;
     transition-duration: 0.1s;
     transition-timing-function: ease-out;

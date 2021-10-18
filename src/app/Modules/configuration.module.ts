@@ -1,19 +1,25 @@
 import { NgModule } from '@angular/core';
-import { BackupsConfigsTableComponent } from '../Pages/ConfigurationComponent/BackupsConfigsTableComponent/backups-configs-table.component';
 import { MaterialModule } from './material.module';
 import { CommonModule } from '@angular/common';
 import { ConfigurationComponent } from '../Pages/ConfigurationComponent/configuration.component';
 import { BackupTypeService } from '../Services/backup-type.service';
 import { BackupConfigService } from '../Services/backup-config.service';
+import { BackupConfigsTableComponent } from '../Pages/ConfigurationComponent/BackupConfigsTableComponent/backup-configs-table.component';
+import { BackupConfigFormComponent } from '../Pages/ConfigurationComponent/BackupConfigFormComponent/backup-config-form.component';
+import { FormsModule } from '@angular/forms';
+import { BackupConfigTypeFormComponent } from '../Pages/ConfigurationComponent/BackupConfigFormComponent/BackupConfigTypeFormComponent/backup-config-type-form.component';
 
 @NgModule({
   imports: [
     MaterialModule,
     CommonModule,
+    FormsModule,
   ],
   declarations: [
     ConfigurationComponent,
-    BackupsConfigsTableComponent,
+    BackupConfigsTableComponent,
+    BackupConfigFormComponent,
+    BackupConfigTypeFormComponent
   ],
   exports: [],
   providers: [

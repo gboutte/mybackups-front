@@ -1,0 +1,54 @@
+<h2 mat-dialog-title>Create a backup configuration</h2>
+<mat-dialog-content class="mat-typography">
+  <form class="example-form">
+    <h3>General</h3>
+    <mat-form-field class="input-full-width" appearance="fill" autocomplete="disabled">
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="Ex. Website">
+    </mat-form-field>
+
+    <mat-slide-toggle>Enabled</mat-slide-toggle>
+
+    <mat-form-field class="input-full-width" appearance="fill" autocomplete="disabled">
+      <mat-label>Backups to keep</mat-label>
+      <input type="number" matInput placeholder="Ex. 5">
+    </mat-form-field>
+
+    <mat-form-field class="input-full-width" appearance="fill" autocomplete="disabled">
+      <mat-label>Frequency</mat-label>
+      <input matInput placeholder="Ex. 0 4 * * *">
+    </mat-form-field>
+    <h3>Origin</h3>
+
+    <mat-form-field class="input-full-width" appearance="fill">
+      <mat-label>Type</mat-label>
+      <mat-select [(ngModel)]="originType" name="originType">
+        <mat-option *ngFor="let type of backupTypesOrigin" [value]="type">
+          {{type.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <ng-container *ngIf="originType !== null">
+      <mb-backup-config-type-form [backupType]="originType"></mb-backup-config-type-form>
+    </ng-container>
+
+    <h3>Destination</h3>
+
+    <mat-form-field class="input-full-width" appearance="fill">
+      <mat-label>Type</mat-label>
+      <mat-select [(ngModel)]="destinationType" name="destinationType">
+        <mat-option *ngFor="let type of backupTypesDestination" [value]="type">
+          {{type.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <ng-container *ngIf="destinationType !== null">
+      <mb-backup-config-type-form [backupType]="destinationType"></mb-backup-config-type-form>
+    </ng-container>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button (click)="onSaveClick()" cdkFocusInitial>Save</button>
+</mat-dialog-actions>

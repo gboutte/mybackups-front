@@ -25,8 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
     ConfigurationModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
-      countDuplicates:true,
-      preventDuplicates:true
+      countDuplicates: true,
+      preventDuplicates: true
     }),
     HttpClientModule,
   ],
