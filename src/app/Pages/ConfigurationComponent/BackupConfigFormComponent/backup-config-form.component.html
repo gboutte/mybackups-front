@@ -4,7 +4,7 @@
     <h3>General</h3>
     <mat-form-field class="input-full-width" appearance="fill" autocomplete="disabled">
       <mat-label>Name</mat-label>
-      <input formControlName="name" matInput placeholder="Ex. Website">
+      <input cdkFocusInitial formControlName="name" matInput placeholder="Ex. Website">
       <mat-error
         *ngIf="backupConfigForm.controls.name.touched && backupConfigForm.controls.name.invalid && backupConfigForm.controls.name.errors?.required"
         class="alert alert-danger">
@@ -71,6 +71,5 @@
 </mat-dialog-content>
 <mat-dialog-actions align="end">
   <button mat-button mat-dialog-close>Cancel</button>
-  <button [disabled]="!backupConfigForm.valid" mat-raised-button color="primary" (click)="onSaveClick()"
-    cdkFocusInitial>Save</button>
+  <button [disabled]="!backupConfigForm.valid" mat-raised-button color="primary" (click)="onSaveClick()">Save</button>
 </mat-dialog-actions>

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { BackupConfig } from 'src/app/Models/backup-config.model';
 import { BackupType } from 'src/app/Models/backup-type.model';
 import { BackupTypeService } from 'src/app/Services/backup-type.service';
 
@@ -36,14 +35,14 @@ export class BackupConfigFormComponent {
 
   public originType: BackupType | null = null;
   public destinationType: BackupType | null = null;
-
+  public dialogRef: MatDialogRef<BackupConfigFormComponent>
 
 
   constructor(
-    public dialogRef: MatDialogRef<BackupConfigFormComponent>,
-
+    dialogRef: MatDialogRef<BackupConfigFormComponent>,
     public backupTypeService: BackupTypeService) {
 
+    this.dialogRef = dialogRef;
     backupTypeService.getAll().subscribe((r) => {
       this.backupTypes = r;
       this.backupTypes.forEach(type => {

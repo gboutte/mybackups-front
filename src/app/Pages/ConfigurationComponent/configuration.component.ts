@@ -12,15 +12,15 @@ import { BackupConfigFormComponent } from './BackupConfigFormComponent/backup-co
 })
 export class ConfigurationComponent {
   backupConfigs: BackupConfig[] = [];
-
+  public dialog: MatDialog;
   public constructor(
     private titleService: Title,
     private backupConfigService: BackupConfigService,
-    public dialog: MatDialog,
+    dialog: MatDialog,
   ) {
     titleService.setTitle('Configuration');
     backupConfigService.getAll().subscribe((r) => { this.backupConfigs = r; });
-
+    this.dialog = dialog;
     // backupConfigService.create(
     //   new BackupConfig(
     //     'Test',
