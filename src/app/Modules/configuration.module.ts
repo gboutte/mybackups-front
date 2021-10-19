@@ -6,7 +6,7 @@ import { BackupTypeService } from '../Services/backup-type.service';
 import { BackupConfigService } from '../Services/backup-config.service';
 import { BackupConfigsTableComponent } from '../Pages/ConfigurationComponent/BackupConfigsTableComponent/backup-configs-table.component';
 import { BackupConfigFormComponent } from '../Pages/ConfigurationComponent/BackupConfigFormComponent/backup-config-form.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BackupConfigTypeFormComponent } from '../Pages/ConfigurationComponent/BackupConfigFormComponent/BackupConfigTypeFormComponent/backup-config-type-form.component';
 
 @NgModule({
@@ -14,6 +14,7 @@ import { BackupConfigTypeFormComponent } from '../Pages/ConfigurationComponent/B
     MaterialModule,
     CommonModule,
     FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     ConfigurationComponent,

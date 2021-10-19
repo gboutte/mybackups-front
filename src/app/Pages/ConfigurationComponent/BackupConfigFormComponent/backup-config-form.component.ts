@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { BackupConfig } from 'src/app/Models/backup-config.model';
 import { BackupType } from 'src/app/Models/backup-type.model';
 import { BackupTypeService } from 'src/app/Services/backup-type.service';
 
@@ -14,8 +16,29 @@ export class BackupConfigFormComponent {
   public backupTypesOrigin: BackupType[] = [];
   public backupTypesDestination: BackupType[] = [];
 
+
+  //Backup Config
+
+  public backupConfigForm = new FormGroup({
+    name: new FormControl('', [
+      Validators.required
+    ]),
+    enabled: new FormControl(true),
+    to_keep: new FormControl(null, [
+      Validators.required
+    ]),
+    frequency: new FormControl(null, [
+      Validators.required,
+      cronValidator()
+    ]),
+
+  });
+
   public originType: BackupType | null = null;
   public destinationType: BackupType | null = null;
+
+
+
   constructor(
     public dialogRef: MatDialogRef<BackupConfigFormComponent>,
 
@@ -40,4 +63,11 @@ export class BackupConfigFormComponent {
   onSaveClick(): void {
     this.dialogRef.close(this.added);
   }
+}
+function cronValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    let regexCron = /(@(annually|yearly|monthly|weekly|daily|hourly|reboot))|(@every (\d+(ns|us|µs|ms|s|m|h))+)|((((\d+,)+\d+|(\d+(\/|-)\d+)|\d+|\*) ?){5,7})/;
+    let match = control.value?.match(regexCron);
+    return !match ? { cronFormat: true } : null;
+  };
 }
