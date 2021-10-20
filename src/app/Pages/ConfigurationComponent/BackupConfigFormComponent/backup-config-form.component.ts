@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { ToastrService } from 'ngx-toastr';
+import { BackupConfig } from 'src/app/Models/backup-config.model';
 import { BackupType } from 'src/app/Models/backup-type.model';
 import { BackupTypeService } from 'src/app/Services/backup-type.service';
 
@@ -20,16 +22,22 @@ export class BackupConfigFormComponent {
 
   public backupConfigForm = new FormGroup({
     name: new FormControl('', [
-      Validators.required
+      Validators.required,
     ]),
     enabled: new FormControl(true),
     to_keep: new FormControl(null, [
-      Validators.required
+      Validators.required,
     ]),
     frequency: new FormControl(null, [
       Validators.required,
-      cronValidator()
+      cronValidator(),
     ]),
+    to_type: new FormControl(null, [
+      Validators.required,
+    ]),
+    from_type: new FormControl(null, [
+      Validators.required,
+    ])
 
   });
 
@@ -37,11 +45,13 @@ export class BackupConfigFormComponent {
   public destinationType: BackupType | null = null;
   public dialogRef: MatDialogRef<BackupConfigFormComponent>
 
-
+  private toastr: ToastrService;
   constructor(
     dialogRef: MatDialogRef<BackupConfigFormComponent>,
-    public backupTypeService: BackupTypeService) {
-
+    public backupTypeService: BackupTypeService,
+    toastr: ToastrService
+  ) {
+    this.toastr = toastr;
     this.dialogRef = dialogRef;
     backupTypeService.getAll().subscribe((r) => {
       this.backupTypes = r;
@@ -59,8 +69,29 @@ export class BackupConfigFormComponent {
 
   }
 
+
   onSaveClick(): void {
-    this.dialogRef.close(this.added);
+    // if (this.validateForm() && this.destinationType !== null && this.originType !== null) {
+    // let backupConfig = new BackupConfig(this.name, this.enabled, this.to_keep, this.frequency, this.originType.code, this.destinationType.code, {}, {});
+    // console.log(backupConfig);
+    // }
+    // this.dialogRef.close(this.added);
+    if (this.backupConfigForm.valid) {
+      let backupConfig = new BackupConfig(
+        this.backupConfigForm.controls.name.value,
+        this.backupConfigForm.controls.enabled.value,
+        this.backupConfigForm.controls.to_keep.value,
+        this.backupConfigForm.controls.frequency.value,
+        this.backupConfigForm.controls.from_type.value.code,
+        this.backupConfigForm.controls.to_type.value.code,
+        {},
+        {}
+      );
+      console.log(backupConfig);
+    } else {
+      this.toastr.error('The values typed in the form are invalid.', 'Error');
+    }
+
   }
 }
 function cronValidator(): ValidatorFn {
