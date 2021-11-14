@@ -13,10 +13,10 @@ export class BackupTypeService extends AbstractService {
     super(httpClient);
     this.endpoint = this.getDomain() + '/backup/type';
   }
-  getAll():Observable<BackupType[]> {
+  getAll(): Observable<BackupType[]> {
 
     return this.httpClient.get<BackupType[]>(this.endpoint, {}).pipe(
-      map((response:any)=> Deserialize(response,BackupType))
+      map((response: any) => Deserialize(response, BackupType))
     );
   }
 }

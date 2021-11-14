@@ -1,4 +1,4 @@
-<ng-container *ngIf="backupType !== null">
+<ng-container *ngIf="backupType !== null && backupTypeFormGroup !== null" [formGroup]="backupTypeFormGroup">
 
   <ng-container *ngFor="let param of backupType.parameters">
     <container-element [ngSwitch]="param.type">
@@ -6,7 +6,15 @@
       <ng-container *ngSwitchCase="'string'">
         <mat-form-field class="input-full-width" appearance="fill" autocomplete="disabled">
           <mat-label>{{param.label}}</mat-label>
-          <input matInput>
+          <input matInput [formControlName]="param.name">
+
+          <!-- Destination errors -->
+
+          <mat-error
+            *ngIf="backupTypeFormGroup && backupTypeFormGroup.controls[param.name].touched && backupTypeFormGroup.controls[param.name].invalid"
+            class="alert alert-danger">
+            Error.
+          </mat-error>
         </mat-form-field>
       </ng-container>
       <!-- Input unsupported -->

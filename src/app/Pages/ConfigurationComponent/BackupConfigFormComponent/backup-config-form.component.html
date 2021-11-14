@@ -69,7 +69,9 @@
 
     <!-- Origin type fields -->
     <ng-container *ngIf="backupConfigForm.controls.from_type.value !== null">
-      <mb-backup-config-type-form [backupType]="backupConfigForm.controls.from_type.value"></mb-backup-config-type-form>
+      <mb-backup-config-type-form [backupType]="backupConfigForm.controls.from_type.value"
+        (updateEmitter)="updateFormGroupFromParameters($event)" [backupTypeFormGroup]="formGroupFromParameters">
+      </mb-backup-config-type-form>
     </ng-container>
 
     <h3>Destination</h3>
@@ -93,7 +95,9 @@
 
     <!-- Destination type fields -->
     <ng-container *ngIf="backupConfigForm.controls.to_type.value !== null">
-      <mb-backup-config-type-form [backupType]="backupConfigForm.controls.to_type.value"></mb-backup-config-type-form>
+      <mb-backup-config-type-form [backupType]="backupConfigForm.controls.to_type.value"
+        [backupTypeFormGroup]="formGroupToParameters" (updateEmitter)="updateFormGroupToParameters($event)">
+      </mb-backup-config-type-form>
     </ng-container>
   </form>
 </mat-dialog-content>

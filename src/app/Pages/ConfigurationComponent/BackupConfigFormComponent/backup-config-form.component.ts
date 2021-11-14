@@ -4,7 +4,12 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
 import { BackupConfig } from 'src/app/Models/backup-config.model';
 import { BackupType } from 'src/app/Models/backup-type.model';
+import { BackupConfigService } from 'src/app/Services/backup-config.service';
 import { BackupTypeService } from 'src/app/Services/backup-type.service';
+
+interface TypeParameter {
+  [key: string]: any
+}
 
 @Component({
   selector: 'mb-backup-config-form',
@@ -37,7 +42,13 @@ export class BackupConfigFormComponent {
     ]),
     from_type: new FormControl(null, [
       Validators.required,
-    ])
+    ]),
+    to_parameters: new FormGroup({
+
+    }),
+    from_parameters: new FormGroup({
+
+    })
 
   });
 
@@ -49,6 +60,7 @@ export class BackupConfigFormComponent {
   constructor(
     dialogRef: MatDialogRef<BackupConfigFormComponent>,
     public backupTypeService: BackupTypeService,
+    public backupConfigService: BackupConfigService,
     toastr: ToastrService
   ) {
     this.toastr = toastr;
@@ -71,12 +83,19 @@ export class BackupConfigFormComponent {
 
 
   onSaveClick(): void {
-    // if (this.validateForm() && this.destinationType !== null && this.originType !== null) {
-    // let backupConfig = new BackupConfig(this.name, this.enabled, this.to_keep, this.frequency, this.originType.code, this.destinationType.code, {}, {});
-    // console.log(backupConfig);
-    // }
-    // this.dialogRef.close(this.added);
     if (this.backupConfigForm.valid) {
+
+      let fromParameters: TypeParameter = {};
+      let toParameters: TypeParameter = {};
+
+      Object.keys(this.formGroupFromParameters.controls).forEach((key: string) => {
+        fromParameters[key] = this.formGroupFromParameters.controls[key].value;
+      });
+
+      Object.keys(this.formGroupToParameters.controls).forEach((key: string) => {
+        toParameters[key] = this.formGroupToParameters.controls[key].value;
+      });
+
       let backupConfig = new BackupConfig(
         this.backupConfigForm.controls.name.value,
         this.backupConfigForm.controls.enabled.value,
@@ -84,14 +103,29 @@ export class BackupConfigFormComponent {
         this.backupConfigForm.controls.frequency.value,
         this.backupConfigForm.controls.from_type.value.code,
         this.backupConfigForm.controls.to_type.value.code,
-        {},
-        {}
+        fromParameters,
+        toParameters
       );
-      console.log(backupConfig);
+      this.dialogRef.close(this.added);
     } else {
       this.toastr.error('The values typed in the form are invalid.', 'Error');
     }
 
+  }
+
+  updateFormGroupFromParameters(formGroup: FormGroup) {
+    this.backupConfigForm.controls.from_parameters = formGroup;
+  }
+
+  updateFormGroupToParameters(formGroup: FormGroup) {
+    this.backupConfigForm.controls.to_parameters = formGroup;
+  }
+
+  get formGroupFromParameters() {
+    return this.backupConfigForm.controls.from_parameters as FormGroup;
+  }
+  get formGroupToParameters() {
+    return this.backupConfigForm.controls.to_parameters as FormGroup;
   }
 }
 function cronValidator(): ValidatorFn {
