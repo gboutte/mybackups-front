@@ -106,7 +106,13 @@ export class BackupConfigFormComponent {
         fromParameters,
         toParameters
       );
-      this.dialogRef.close(this.added);
+
+      this.backupConfigService.create(backupConfig).subscribe((r: any) => {
+        if (r.errors.valid) {
+        } else {
+          this.toastr.error('You need to check your inputs.', 'Error');
+        }
+      });
     } else {
       this.toastr.error('The values typed in the form are invalid.', 'Error');
     }

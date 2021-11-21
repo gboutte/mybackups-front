@@ -25,14 +25,14 @@ export class BackupConfigService extends AbstractService {
       this.endpoint,
       Serialize(backupConfig)
     ).pipe(
-      map((response: any) => console.log(response))
+      map((response: any) => response)
     );
   }
   delete(backupConfig: BackupConfig) {
     return this.httpClient.request(
       'delete',
       this.endpoint,
-      { body:Serialize(backupConfig)}
+      { body: Serialize(backupConfig) }
     ).pipe(
       map((response: any) => console.log(response))
     );

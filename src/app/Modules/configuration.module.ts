@@ -8,13 +8,18 @@ import { BackupConfigsTableComponent } from '../Pages/ConfigurationComponent/Bac
 import { BackupConfigFormComponent } from '../Pages/ConfigurationComponent/BackupConfigFormComponent/backup-config-form.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BackupConfigTypeFormComponent } from '../Pages/ConfigurationComponent/BackupConfigFormComponent/BackupConfigTypeFormComponent/backup-config-type-form.component';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   imports: [
     MaterialModule,
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ToastrModule.forRoot({
+      countDuplicates: true,
+      preventDuplicates: true
+    }),
   ],
   declarations: [
     ConfigurationComponent,
