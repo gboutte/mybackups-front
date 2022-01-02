@@ -110,6 +110,29 @@ export class BackupConfigFormComponent {
       this.backupConfigService.create(backupConfig).subscribe((r: any) => {
         if (r.errors.valid) {
         } else {
+          Object.keys(r.errors).forEach((key: string) => {
+            if (r.errors[key]?.error) {
+              this.backupConfigForm.controls[key]?.setErrors({ apiError: r.errors[key].message });
+            }
+          });
+          let toParametersGroup: FormGroup;
+          toParametersGroup = this.backupConfigForm.controls.to_parameters as FormGroup;
+          Object.keys(r.errors.destination_parameters?.parameters_errors).forEach((key: string) => {
+            if (r.errors.destination_parameters.parameters_errors[key]?.error) {
+              toParametersGroup.controls[key]?.setErrors({ apiError: r.errors.destination_parameters.parameters_errors[key].message });
+            }
+          });
+
+          this.updateFormGroupToParameters(toParametersGroup);
+
+          let fromParametersGroup: FormGroup;
+          fromParametersGroup = this.backupConfigForm.controls.from_parameters as FormGroup;
+          Object.keys(r.errors.from_parameters?.parameters_errors).forEach((key: string) => {
+            fromParametersGroup.controls[key]?.setErrors({ apiError: r.errors.from_parameters.parameters_errors[key].message });
+          });
+
+          this.updateFormGroupFromParameters(fromParametersGroup);
+
           this.toastr.error('You need to check your inputs.', 'Error');
         }
       });

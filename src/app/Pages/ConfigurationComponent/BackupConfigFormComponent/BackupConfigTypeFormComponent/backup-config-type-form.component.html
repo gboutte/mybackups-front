@@ -11,9 +11,9 @@
           <!-- Destination errors -->
 
           <mat-error
-            *ngIf="backupTypeFormGroup && backupTypeFormGroup.controls[param.name].touched && backupTypeFormGroup.controls[param.name].invalid"
+            *ngIf="backupTypeFormGroup && backupTypeFormGroup.controls[param.name].touched && backupTypeFormGroup.controls[param.name].invalid && backupTypeFormGroup.controls[param.name].errors?.apiError"
             class="alert alert-danger">
-            Error.
+            {{ backupTypeFormGroup.controls[param.name].errors?.apiError}}
           </mat-error>
         </mat-form-field>
       </ng-container>

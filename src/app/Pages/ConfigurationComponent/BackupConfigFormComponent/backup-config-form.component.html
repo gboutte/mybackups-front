@@ -13,6 +13,12 @@
         class="alert alert-danger">
         The name is required.
       </mat-error>
+
+      <mat-error
+        *ngIf="backupConfigForm.controls.name.touched && backupConfigForm.controls.name.invalid && backupConfigForm.controls.name.errors?.apiError"
+        class="alert alert-danger">
+        {{backupConfigForm.controls.name.errors?.apiError}}
+      </mat-error>
     </mat-form-field>
 
     <mat-slide-toggle formControlName="enabled">Enabled</mat-slide-toggle>
@@ -29,6 +35,11 @@
         The number of backup to keep is required.
       </mat-error>
 
+      <mat-error
+        *ngIf="backupConfigForm.controls.to_keep.touched && backupConfigForm.controls.to_keep.invalid && backupConfigForm.controls.to_keep.errors?.apiError"
+        class="alert alert-danger">
+        {{backupConfigForm.controls.to_keep.errors?.apiError}}
+      </mat-error>
     </mat-form-field>
 
     <!-- Frequency field -->
@@ -45,6 +56,11 @@
         *ngIf="backupConfigForm.controls.frequency.touched && backupConfigForm.controls.frequency.invalid && backupConfigForm.controls.frequency.errors?.cronFormat"
         class="alert alert-danger">
         The frequency format is incorrect.
+      </mat-error>
+      <mat-error
+        *ngIf="backupConfigForm.controls.frequency.touched && backupConfigForm.controls.frequency.invalid && backupConfigForm.controls.frequency.errors?.apiError"
+        class="alert alert-danger">
+        {{backupConfigForm.controls.frequency.errors?.apiError}}
       </mat-error>
     </mat-form-field>
 
@@ -64,6 +80,12 @@
         *ngIf="backupConfigForm.controls.from_type.touched && backupConfigForm.controls.from_type.invalid && backupConfigForm.controls.from_type.errors?.required"
         class="alert alert-danger">
         The origin of the backup is required.
+      </mat-error>
+
+      <mat-error
+        *ngIf="backupConfigForm.controls.from_type.touched && backupConfigForm.controls.from_type.invalid && backupConfigForm.controls.from_type.errors?.apiError"
+        class="alert alert-danger">
+        {{backupConfigForm.controls.from_type.errors?.apiError}}
       </mat-error>
     </mat-form-field>
 
@@ -90,6 +112,11 @@
         *ngIf="backupConfigForm.controls.to_type.touched && backupConfigForm.controls.to_type.invalid && backupConfigForm.controls.to_type.errors?.required"
         class="alert alert-danger">
         The destination of the backup is required.
+      </mat-error>
+      <mat-error
+        *ngIf="backupConfigForm.controls.to_type.touched && backupConfigForm.controls.to_type.invalid && backupConfigForm.controls.to_type.errors?.apiError"
+        class="alert alert-danger">
+        {{backupConfigForm.controls.to_type.errors?.apiError}}
       </mat-error>
     </mat-form-field>
 
